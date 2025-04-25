@@ -12,6 +12,9 @@ import CreateCard from "./pages/CreateCard";
 import Campaigns from "./pages/Campaigns";
 import Customers from "./pages/Customers";
 import Notifications from "./pages/Notifications";
+import Cards from "./pages/Cards";
+import Settings from "./pages/Settings";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +31,13 @@ const App = () => (
           <Route path="/dashboard/create-card" element={<CreateCard />} />
           <Route path="/dashboard/campaigns" element={<Campaigns />} />
           <Route path="/dashboard/customers" element={<Customers />} />
+          <Route path="/dashboard/cards" element={<Cards />} />
           <Route path="/dashboard/notifications" element={<Notifications />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
