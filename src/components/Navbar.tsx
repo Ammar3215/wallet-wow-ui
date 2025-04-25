@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,13 +12,13 @@ const Navbar = () => {
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-brand-blue">
               <span className="absolute w-6 h-6 rounded-full bg-white top-1 left-2"></span>
               <span className="absolute w-2 h-2 rounded-full bg-brand-green top-4 left-5"></span>
             </div>
             <span className="ml-2 text-xl font-bold text-gray-900">CardWallet</span>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
@@ -25,6 +26,7 @@ const Navbar = () => {
           <a href="#features" className="text-gray-600 hover:text-brand-blue transition-colors">Features</a>
           <a href="#how-it-works" className="text-gray-600 hover:text-brand-blue transition-colors">How It Works</a>
           <a href="#pricing" className="text-gray-600 hover:text-brand-blue transition-colors">Pricing</a>
+          <Link to="/partner-login" className="text-gray-600 hover:text-brand-blue transition-colors">Partner Login</Link>
           <Button variant="outline" className="ml-2">Log In</Button>
           <Button>Sign Up</Button>
         </nav>
@@ -45,6 +47,7 @@ const Navbar = () => {
             <a href="#features" className="px-4 py-2 text-gray-600 hover:text-brand-blue transition-colors">Features</a>
             <a href="#how-it-works" className="px-4 py-2 text-gray-600 hover:text-brand-blue transition-colors">How It Works</a>
             <a href="#pricing" className="px-4 py-2 text-gray-600 hover:text-brand-blue transition-colors">Pricing</a>
+            <Link to="/partner-login" className="px-4 py-2 text-gray-600 hover:text-brand-blue transition-colors">Partner Login</Link>
             <div className="pt-2 flex flex-col space-y-2">
               <Button variant="outline" className="w-full">Log In</Button>
               <Button className="w-full">Sign Up</Button>
