@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   Home, 
@@ -22,6 +22,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [businessName, setBusinessName] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Check if user is logged in (in a real app, use a proper auth system)
@@ -53,6 +54,16 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { name: "Settings", icon: Settings, path: "/dashboard/settings" },
   ];
 
+  const isActive = (path) => {
+    if (path === "/dashboard" && location.pathname === "/dashboard") {
+      return true;
+    }
+    if (path !== "/dashboard" && location.pathname.startsWith(path)) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar for desktop */}
@@ -70,7 +81,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <a
                 key={item.name}
                 href={item.path}
-                className="flex items-center px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100"
+                className={`flex items-center px-4 py-2 rounded-md ${
+                  isActive(item.path) 
+                    ? "bg-blue-50 text-blue-600" 
+                    : "text-gray-600 hover:bg-gray-100"
+                }`}
               >
                 <item.icon className="h-5 w-5 mr-3" />
                 {item.name}
@@ -131,7 +146,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <a
                   key={item.name}
                   href={item.path}
-                  className="flex items-center px-3 py-2 text-base font-medium text-gray-600 rounded-md hover:bg-gray-100"
+                  className={`flex items-center px-3 py-2 text-base font-medium rounded-md ${
+                    isActive(item.path) 
+                      ? "bg-blue-50 text-blue-600" 
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <item.icon className="h-5 w-5 mr-3" />
