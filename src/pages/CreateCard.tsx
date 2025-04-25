@@ -1,12 +1,12 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, Share2, QrCode as QrCodeIcon } from "lucide-react";
 import { toast } from "sonner";
+import QrCode from "@/components/QrCode";
 
 const CreateCard = () => {
   const [step, setStep] = useState(1);
@@ -51,7 +51,6 @@ const CreateCard = () => {
   };
   
   const handleSubmit = () => {
-    // In a real app, you would submit the form data to your backend
     toast.success("Card created successfully!");
     navigate("/dashboard");
   };
@@ -408,10 +407,8 @@ const CreateCard = () => {
             <h2 className="text-2xl font-semibold">Generate QR Code</h2>
             <div className="flex justify-center mb-6">
               <div className="w-48 h-48 bg-gray-100 rounded-lg flex items-center justify-center">
-                <div className="w-36 h-36 bg-gray-300 rounded">
-                  <div className="h-full w-full flex items-center justify-center">
-                    <QrCode />
-                  </div>
+                <div className="w-36 h-36 bg-white rounded">
+                  <QrCode />
                 </div>
               </div>
             </div>
@@ -436,7 +433,7 @@ const CreateCard = () => {
                   <span className="text-xs">Share Link</span>
                 </Button>
                 <Button variant="outline" className="h-auto py-3 flex flex-col">
-                  <QrCode className="h-5 w-5 mb-1" />
+                  <QrCodeIcon className="h-5 w-5 mb-1" />
                   <span className="text-xs">Embed Code</span>
                 </Button>
               </div>
